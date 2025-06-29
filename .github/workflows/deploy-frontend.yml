@@ -1,0 +1,86 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/web/**'
+      - 'packages/deployment/infrastructure/**'
+      - '.github/workflows/deploy-frontend.yml'
+
+env:
+  AWS_DEFAULT_REGION: us-east-1
+  NODE_VERSION: '20.x'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.15.0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install
+        
+      - name: Build frontend
+        run: pnpm --filter web build
+        
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+          
+      - name: Install AWS CDK
+        run: npm install -g aws-cdk
+        
+      - name: Deploy infrastructure
+        working-directory: packages/deployment/infrastructure
+        run: |
+          npm install
+          cdk deploy --require-approval never
+          
+      - name: Deploy frontend to S3
+        run: |
+          BUCKET_NAME=$(aws cloudformation describe-stacks \
+            --stack-name WheelOfStuffBackendProd \
+            --query "Stacks[0].Outputs[?OutputKey=='FrontendBucketName'].OutputValue" \
+            --output text)
+          
+          aws s3 sync apps/web/dist/ s3://$BUCKET_NAME --delete
+          
+      - name: Invalidate CloudFront cache
+        run: |
+          DISTRIBUTION_ID=$(aws cloudformation describe-stacks \
+            --stack-name WheelOfStuffBackendProd \
+            --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" \
+            --output text)
+          
+          aws cloudfront create-invalidation \
+            --distribution-id $DISTRIBUTION_ID \
+            --paths "/*"
+            
+      - name: Get deployment URL
+        run: |
+          CLOUDFRONT_URL=$(aws cloudformation describe-stacks \
+            --stack-name WheelOfStuffBackendProd \
+            --query "Stacks[0].Outputs[?OutputKey=='CloudFrontUrl'].OutputValue" \
+            --output text)
+          
+          echo "### 🚀 Deployment Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Frontend URL: $CLOUDFRONT_URL" >> $GITHUB_STEP_SUMMARY

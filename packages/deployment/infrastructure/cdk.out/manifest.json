@@ -1,0 +1,330 @@
+{
+  "version": "44.0.0",
+  "artifacts": {
+    "WheelOfStuffBackendProd.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "WheelOfStuffBackendProd.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "WheelOfStuffBackendProd": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://688932985022/us-east-1",
+      "properties": {
+        "templateFile": "WheelOfStuffBackendProd.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::688932985022:role/cdk-hnb659fds-deploy-role-688932985022-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::688932985022:role/cdk-hnb659fds-cfn-exec-role-688932985022-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-688932985022-us-east-1/009907de7ebc45a64fc40990a975b0a39ea157fc288ce2d7d6423e91ed20c6aa.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "WheelOfStuffBackendProd.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::688932985022:role/cdk-hnb659fds-lookup-role-688932985022-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "WheelOfStuffBackendProd.assets"
+      ],
+      "metadata": {
+        "/WheelOfStuffBackendProd/FrontendBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FrontendBucketEFE2E19C"
+          }
+        ],
+        "/WheelOfStuffBackendProd/FrontendBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FrontendBucketPolicy1DFF75D9"
+          }
+        ],
+        "/WheelOfStuffBackendProd/FrontendBucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FrontendBucketAutoDeleteObjectsCustomResourceDB860B32"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+            "data": true
+          }
+        ],
+        "/WheelOfStuffBackendProd/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/WheelOfStuffBackendProd/OAI/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OAIE1EFC67F"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Distribution/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Distribution830FAC52"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Vpc8378EB38"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1Subnet5C2D37C4"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1RouteTable6C95E38E"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1RouteTableAssociation97140677"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1DefaultRoute3DA9E72A"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2Subnet691E08A3"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2RouteTable94F7E489"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2RouteTableAssociationDD5762D8"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2DefaultRoute97F91067"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/IsolatedSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcIsolatedSubnet1SubnetE48C5737"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/IsolatedSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcIsolatedSubnet1RouteTable4771E3E5"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/IsolatedSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcIsolatedSubnet1RouteTableAssociationD300FCBB"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/IsolatedSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcIsolatedSubnet2Subnet16364B91"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/IsolatedSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcIsolatedSubnet2RouteTable1D30AF7D"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/IsolatedSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcIsolatedSubnet2RouteTableAssociationF7B18CCA"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcIGWD7BA715C"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Vpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcVPCGWBF912B6E"
+          }
+        ],
+        "/WheelOfStuffBackendProd/LambdaExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaExecutionRoleD5C26073"
+          }
+        ],
+        "/WheelOfStuffBackendProd/HealthCheckLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HealthCheckLambda5D341F20"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiF70053CD"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiCloudWatchRole73EC6FC4"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiAccountA18C9B29"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiDeploymentB17BE62De033d6a9908f98d8caaa7cf2ba7baea3"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiDeploymentStageprod3EB9684E"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiEndpoint4F160690"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Default/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiOPTIONS5886EA5D"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Default/health/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Apihealth5CB7A415"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Default/health/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApihealthOPTIONS119B6E46"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Default/health/GET/ApiPermission.WheelOfStuffBackendProdApiD0C2E7C3.GET..health": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApihealthGETApiPermissionWheelOfStuffBackendProdApiD0C2E7C3GEThealth17312946"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Default/health/GET/ApiPermission.Test.WheelOfStuffBackendProdApiD0C2E7C3.GET..health": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApihealthGETApiPermissionTestWheelOfStuffBackendProdApiD0C2E7C3GEThealthA3F88187"
+          }
+        ],
+        "/WheelOfStuffBackendProd/Api/Default/health/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApihealthGET8A9DC1E4"
+          }
+        ],
+        "/WheelOfStuffBackendProd/FrontendBucketName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FrontendBucketName"
+          }
+        ],
+        "/WheelOfStuffBackendProd/CloudFrontDistributionId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CloudFrontDistributionId"
+          }
+        ],
+        "/WheelOfStuffBackendProd/CloudFrontUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CloudFrontUrl"
+          }
+        ],
+        "/WheelOfStuffBackendProd/ApiUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiUrl"
+          }
+        ],
+        "/WheelOfStuffBackendProd/HealthEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HealthEndpoint"
+          }
+        ],
+        "/WheelOfStuffBackendProd/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/WheelOfStuffBackendProd/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/WheelOfStuffBackendProd/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "WheelOfStuffBackendProd"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  },
+  "minimumCliVersion": "2.1019.2"
+}
